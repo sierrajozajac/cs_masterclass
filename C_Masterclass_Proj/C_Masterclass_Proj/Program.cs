@@ -1,18 +1,20 @@
 ﻿using System;
 using System.Reflection.Metadata;
+using System.Threading;
 
 namespace C_Masterclass_Proj
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            //Section1Exercises();
-            //Section2Exercises();
-            //Section2Challenge();
-            //Section3Exercises();
-            //Section3Challenge();
-        }
+        //static void Main(string[] args)
+        //{
+        //    //Section1Exercises();
+        //    //Section2Exercises();
+        //    //Section2Challenge();
+        //    //Section3Exercises();
+        //    //Section3Challenge();
+        //    Section4Exercises();
+        //}
 
         #region Section 1
         public static void Section1Exercises()
@@ -389,6 +391,79 @@ namespace C_Masterclass_Proj
         #endregion Section 3
         #region Section 4
         public static void Section4Exercises()
+        {
+            Console.WriteLine("Section 4 (Making Decisions) Exercises");
+
+            Console.WriteLine();
+            Console.WriteLine("Portion: IF/ELSE blocks");
+
+            Console.WriteLine("What's the temperature (in Farenheit degrees)?");
+
+            string tempString = Console.ReadLine();
+            int numTemp;
+            int number;
+
+            if (int.TryParse(tempString, out number))
+            {
+                numTemp = number;
+            }
+            else
+            {
+                numTemp = 0;
+                Console.WriteLine("Value entered was not a number. 0 set as temperature.");
+            }
+
+            if (numTemp < 30)
+            {
+                Console.WriteLine("Bundle up! It's c-cold!");
+            }
+            else if (numTemp < 50)
+            {
+                Console.WriteLine("Pretty chilly! Hope for sunshine!");
+            }
+            else if (numTemp < 70)
+            {
+                Console.WriteLine("Enjoy this nice day!");
+            }
+            else if (numTemp < 90)
+            {
+                Console.WriteLine("Wear shorts!");
+            }
+            else
+            {
+                Console.WriteLine("Gee whiz! It's hot!");
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Portion: Nested IF statements");
+
+            bool isAdmin = false;
+            bool isRegistered = true;
+            string userName = "";
+
+            Console.WriteLine("Please enter your user name.");
+            userName = Console.ReadLine();
+
+            if (isRegistered)
+            {
+                if (userName != "")
+                {
+                    if (isAdmin)
+                    {
+                        Console.WriteLine("Hi there, Admin {0}!", userName);
+                    }
+                    else
+                    {
+                        Console.WriteLine("Hi there, {0}!", userName);
+                    }
+                }
+                else
+                {
+                    Console.WriteLine("Hi there, registered user!");
+                }
+            }
+        }
+        public static void Section4Challenge2()
         {
 
         }
