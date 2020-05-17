@@ -463,10 +463,6 @@ namespace C_Masterclass_Proj
                 }
             }
         }
-        public static void Section4Challenge2()
-        {
-
-        }
         #endregion Section 4
     }
 }

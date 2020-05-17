@@ -12,50 +12,53 @@ namespace C_Masterclass_Proj
         private static User[] users = new User[10];
         private static int usersCnt = 0;
 
-        public static void Main(string[] args)
-        {
-            // Create a user login system
-            bool programContinues = true;
-            Console.WriteLine("Welcome!");
+        //public static void Main(string[] args)
+        //{
+        //    // Create a user login system
+        //    bool programContinues = true;
+        //    Console.WriteLine("Welcome!");
+        //    Console.WriteLine();
 
-            while (programContinues)
-            {
-                Console.WriteLine("To register, enter 0.");
-                Console.WriteLine("To login, enter 1.");
-                Console.WriteLine("To quit, enter 2.");
+        //    while (programContinues)
+        //    {
+        //        Console.WriteLine("To register, enter 0.");
+        //        Console.WriteLine("To login, enter 1.");
+        //        Console.WriteLine("To quit, enter 2.");
 
-                string userInput = Console.ReadLine();
-                int tmp;
-                int num;
-                if (int.TryParse(userInput, out tmp))
-                {
-                    num = tmp;
-                }
-                else
-                {
-                    num = -1;
-                    Console.WriteLine("Invalid entry. Please try again.");
-                }
+        //        string userInput = Console.ReadLine();
+        //        int tmp;
+        //        int num;
+        //        if (int.TryParse(userInput, out tmp))
+        //        {
+        //            num = tmp;
+        //        }
+        //        else
+        //        {
+        //            num = -1;
+        //            Console.WriteLine("Invalid entry. Please try again.");
+        //        }
 
-                switch (num)
-                {
-                    case 0:
-                        RegisterUser();
-                        break;
-                    case 1:
-                        LoginUser();
-                        break;
-                    case 2:
-                        programContinues = false;
-                        break;
-                    case -1:
-                        // Invalid entry
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
+        //        switch (num)
+        //        {
+        //            case 0:
+        //                RegisterUser();
+        //                break;
+        //            case 1:
+        //                LoginUser();
+        //                break;
+        //            case 2:
+        //                programContinues = false;
+        //                break;
+        //            case -1:
+        //                // Invalid entry
+        //                break;
+        //            default:
+        //                break;
+        //        }
+
+        //        Console.WriteLine();
+        //    }
+        //}
 
         public static void RegisterUser()
         {
