@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Reflection.Metadata;
 
 namespace C_Masterclass_Proj
 {
@@ -7,8 +8,8 @@ namespace C_Masterclass_Proj
         static void Main(string[] args)
         {
             //Section1Exercises();
-            //Section2Exercises();
-            Section2Challenge();
+            Section2Exercises();
+            //Section2Challenge();
         }
 
         public static void Section1Exercises()
@@ -97,6 +98,13 @@ namespace C_Masterclass_Proj
             int sumResult = intNum1 + intNum2;
             Console.WriteLine(stringNum1 + " concated plus " + stringNum2 + " is " + concatResult);
             Console.WriteLine(intNum1 + " plus " + intNum2 + " is " + sumResult);
+
+            // Constants
+            Console.WriteLine();
+            Console.WriteLine("Portion: constants");
+
+            const string BDAY = "10/17/1997";
+            Console.WriteLine("My birthday is always going to be {0}", BDAY);
         }
 
         public static void Section2Challenge()
