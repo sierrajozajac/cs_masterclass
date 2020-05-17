@@ -8,10 +8,13 @@ namespace C_Masterclass_Proj
         static void Main(string[] args)
         {
             //Section1Exercises();
-            Section2Exercises();
+            //Section2Exercises();
             //Section2Challenge();
+            //Section3Exercises();
+            //Section3Challenge();
         }
 
+        #region Section 1
         public static void Section1Exercises()
         {
             Console.ForegroundColor = ConsoleColor.Green;
@@ -20,7 +23,8 @@ namespace C_Masterclass_Proj
             Console.WriteLine("Section 1 (Your First C# Program and an Overview of VS) Exercise");
             Console.WriteLine("Hello Frog World!");
         }
-
+        #endregion Section 1
+        #region Section 2
         public static void Section2Exercises()
         {
             Console.WriteLine("Section 2 (Datatypes and Variables) Exercises");
@@ -203,5 +207,191 @@ namespace C_Masterclass_Proj
             int iNum = Int32.Parse(num);
             Console.WriteLine(iNum);
         }
+        #endregion Section 2
+        #region Section 3
+        public static void Section3Exercises()
+        {
+            Console.WriteLine("Section 3 (Functions/Methods and How to Save Time) Exercises");
+            
+            Console.WriteLine();
+            Console.WriteLine("Method: Add2Ints");
+
+            int sum = Add2Ints(2, 3);
+            Console.WriteLine(sum);
+
+            Console.WriteLine(Add2Ints(13, 21));
+
+            Console.WriteLine();
+            Console.WriteLine("Method: WriteSomething");
+            WriteSomething();
+
+            Console.WriteLine();
+            Console.WriteLine("Method: WriteSomethingSpecific");
+            WriteSomethingSpecific("something specific");
+
+            Console.WriteLine();
+            Console.WriteLine("Method: ReadAndWriteSomething");
+            ReadAndWriteSomething();
+
+            Console.WriteLine();
+            Console.WriteLine("Method: AddTwoInputs");
+            AddTwoInputs();
+
+            Console.WriteLine();
+            Console.WriteLine("Method: AddTwoInputsTryCatch");
+            AddTwoInputsTryCatch();
+
+            Console.WriteLine();
+            Console.WriteLine("Method: UnaryOperators");
+            UnaryOperators();
+
+            Console.WriteLine();
+            Console.WriteLine("Method: IncrementDecrementPperators");
+            IncrementDecrementOperators();
+
+            Console.WriteLine();
+            Console.WriteLine("Method: ArithmeticOperators");
+            ArithmeticOperators();
+
+            Console.WriteLine();
+            Console.WriteLine("Method: RelationalAndTypeOperators");
+            RelationalAndTypeOperators();
+
+            Console.WriteLine();
+            Console.WriteLine("Method: ConditionalOperators");
+            ConditionalOperators();
+        }
+
+        public static int Add2Ints(int num1, int num2)
+        {
+            return num1 + num2;
+        }
+        public static void WriteSomething()
+        {
+            Console.WriteLine("Something");
+        }
+        public static void WriteSomethingSpecific(string specific)
+        {
+            Console.WriteLine(specific);
+        }
+        public static void ReadAndWriteSomething()
+        {
+            Console.WriteLine("Input something:");
+            string input = Console.ReadLine();
+            Console.WriteLine(input);
+        }
+        public static void AddTwoInputs()
+        {
+            Console.WriteLine("Enter your first number:");
+            int num1 = Int32.Parse(Console.ReadLine());
+            Console.WriteLine("Enter your second number:");
+            int num2 = Int32.Parse(Console.ReadLine());
+            int sum = num1 + num2;
+            Console.WriteLine("The sum of the two numbers is: " + sum);
+        }
+        public static void AddTwoInputsTryCatch()
+        {
+            Console.WriteLine("Enter your first number:");
+            string input1 = Console.ReadLine();
+            Console.WriteLine("Enter your second number:");
+            string input2 = Console.ReadLine();
+
+            try
+            {
+                int num1 = Int32.Parse(input1);
+                int num2 = Int32.Parse(input2);
+                int sum = num1 + num2;
+                Console.WriteLine("The sum of the two numbers is " + sum);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e.Message);
+            }
+        }
+        public static void UnaryOperators()
+        {
+            int num1 = 5;
+            int num3 = -num1;
+            Console.WriteLine(num3);
+
+            bool isSunny = true;
+            Console.WriteLine(!isSunny);
+        }
+        public static void IncrementDecrementOperators()
+        {
+            int num = 7;
+
+            Console.WriteLine("Original value: " + num);
+            // Increment
+            Console.WriteLine("num++");
+            Console.WriteLine(num++);
+            Console.WriteLine(num);
+            // Pre-Increment
+            Console.WriteLine("++num");
+            Console.WriteLine(++num);
+            Console.WriteLine(num);
+            // Decrement
+            Console.WriteLine("num--");
+            Console.WriteLine(num--);
+            Console.WriteLine(num);
+            // Pre-Decrement
+            Console.WriteLine("--num");
+            Console.WriteLine(--num);
+            Console.WriteLine(num);
+        }
+        public static void ArithmeticOperators()
+        {
+            int num1 = 127;
+            int num2 = 33;
+            Console.WriteLine("{0} plus {1} is {2}", num1, num2, num1 + num2);
+            Console.WriteLine("{0} minus {1} is {2}", num1, num2, num1 - num2);
+            Console.WriteLine("{0} divided by {1} is {2}", num1, num2, num1 / num2);
+            Console.WriteLine("The remainder of {0} divided by {1} is {2}", num1, num2, num1 % num2);
+        }
+        public static void RelationalAndTypeOperators()
+        {
+            int num1 = 73;
+            int num2 = 30;
+            bool isLower = num1 < num2;
+            bool isHigher = num1 > num2;
+            bool isEqual = num1 == num2;
+            bool isNotEqual = num1 != num2;
+
+            Console.WriteLine("{0} is lower in value than {1}: {2}", num1, num2, isLower);
+            Console.WriteLine("{0} is higher in value than {1}: {2}", num1, num2, isHigher);
+            Console.WriteLine("{0} is equal in value to {1}: {2}", num1, num2, isEqual);
+            Console.WriteLine("{0} is not equal in value to {1}: {2}", num1, num2, isNotEqual);
+        }
+        public static void ConditionalOperators()
+        {
+            bool isSunny = true;
+            bool isRaining = false;
+            bool isNiceDay = isSunny && (!isRaining);
+            bool isBadDay = (!isSunny) || isRaining;
+            Console.WriteLine("Is it sunny? {0}", isSunny);
+            Console.WriteLine("Is it raining? {0}", isRaining);
+            Console.WriteLine("Is it a nice day? {0}", isNiceDay);
+            Console.WriteLine("Is it a bad day? {0}", isBadDay);
+        }
+        public static void Section3Challenge()
+        {
+            string friend1 = "Cheyenne";
+            string friend2 = "Bayleigh";
+            string friend3 = "Sierra";
+            GreetFriend(friend1);
+            GreetFriend(friend2);
+            GreetFriend(friend3);
+        }
+        public static void GreetFriend(string name)
+        {
+            Console.WriteLine("Hi " + name + ", my friend!");
+        }
+        #endregion Section 3
+        #region Section 4
+        public static void Section4Exercises()
+        {
+
+        }
+        #endregion Section 4
     }
 }
