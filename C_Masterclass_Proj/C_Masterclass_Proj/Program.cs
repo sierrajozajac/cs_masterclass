@@ -6,15 +6,15 @@ namespace C_Masterclass_Proj
 {
     class Program
     {
-        //static void Main(string[] args)
-        //{
-        //    //Section1Exercises();
-        //    //Section2Exercises();
-        //    //Section2Challenge();
-        //    //Section3Exercises();
-        //    //Section3Challenge();
-        //    Section4Exercises();
-        //}
+        static void Main(string[] args)
+        {
+            //Section1Exercises();
+            //Section2Exercises();
+            //Section2Challenge();
+            //Section3Exercises();
+            //Section3Challenge();
+            Section4Exercises();
+        }
 
         #region Section 1
         public static void Section1Exercises()
@@ -462,6 +462,53 @@ namespace C_Masterclass_Proj
                     Console.WriteLine("Hi there, registered user!");
                 }
             }
+
+            Console.WriteLine();
+            Console.WriteLine("Portion: Enhanced IF statements");
+
+            int temperature = 400;
+            string stateOfMatter1;
+            string stateOfMatter2;
+
+            if (temperature < 32)
+            {
+                stateOfMatter1 = "solid";
+            }
+            else 
+            {
+                stateOfMatter1 = "liquid";
+            }
+
+            stateOfMatter2 = temperature < 32 ? "solid" : "liquid";
+
+            Console.WriteLine("Regular IF/ELSE statement: " + stateOfMatter1);
+            Console.WriteLine("Enhanced IF/ELSE statement: " + stateOfMatter2);
+
+            // a ? b : c ? d : e
+            // is evaluated as
+            // a ? b : (c ? d : e)
+
+            string stateOfMatter3;
+            string stateOfMatter4;
+
+            if (temperature < 32)
+            {
+                stateOfMatter3 = "solid";
+            }
+            else if (temperature < 212)
+            {
+                stateOfMatter3 = "liquid";
+            }
+            else
+            {
+                stateOfMatter3 = "gas";
+            }
+
+            stateOfMatter4 = temperature < 32 ? "solid" : temperature < 212 ? "liquid" : "gas";
+
+            Console.WriteLine("Regular IF/ELSEIF/ELSE statement: " + stateOfMatter3);
+            Console.WriteLine("Enhanced IF/ELSEIF/ELSE statement: " + stateOfMatter4);
+
         }
         #endregion Section 4
     }

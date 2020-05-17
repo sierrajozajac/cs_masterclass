@@ -10,49 +10,49 @@ namespace C_Masterclass_Proj
         private static int highscore = 0;
         private static string highscorePlayer;
 
-        public static void Main(string[] args)
-        {
-            Console.WriteLine("Current highscore = 0");
-            Console.WriteLine("Current highscore acheiving player = NULL");
+        //public static void Main(string[] args)
+        //{
+        //    Console.WriteLine("Current highscore = 0");
+        //    Console.WriteLine("Current highscore acheiving player = NULL");
 
-            bool programContinues = true;
+        //    bool programContinues = true;
 
-            while (programContinues)
-            {
-                Console.WriteLine();
-                Console.WriteLine("To enter a new score, enter 0.");
-                Console.WriteLine("To quit, enter 1.");
+        //    while (programContinues)
+        //    {
+        //        Console.WriteLine();
+        //        Console.WriteLine("To enter a new score, enter 0.");
+        //        Console.WriteLine("To quit, enter 1.");
 
-                string userInput = Console.ReadLine();
-                int tmp;
-                int num;
+        //        string userInput = Console.ReadLine();
+        //        int tmp;
+        //        int num;
 
-                if (int.TryParse(userInput, out tmp))
-                {
-                    num = tmp;
-                }
-                else
-                {
-                    num = -1;
-                    Console.WriteLine("Invalid entry. Please try again.");
-                }
+        //        if (int.TryParse(userInput, out tmp))
+        //        {
+        //            num = tmp;
+        //        }
+        //        else
+        //        {
+        //            num = -1;
+        //            Console.WriteLine("Invalid entry. Please try again.");
+        //        }
 
-                switch (num)
-                {
-                    case 0:
-                        AddNewScore();
-                        break;
-                    case 1:
-                        programContinues = false;
-                        break;
-                    case -1:
-                        // Invalid entry
-                        break;
-                    default:
-                        break;
-                }
-            }
-        }
+        //        switch (num)
+        //        {
+        //            case 0:
+        //                AddNewScore();
+        //                break;
+        //            case 1:
+        //                programContinues = false;
+        //                break;
+        //            case -1:
+        //                // Invalid entry
+        //                break;
+        //            default:
+        //                break;
+        //        }
+        //    }
+        //}
 
         public static void AddNewScore()
         {
