@@ -1,20 +1,22 @@
 ﻿using System;
 using System.Reflection.Metadata;
+using System.Text.Json;
 using System.Threading;
 
 namespace C_Masterclass_Proj
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            //Section1Exercises();
-            //Section2Exercises();
-            //Section2Challenge();
-            //Section3Exercises();
-            //Section3Challenge();
-            Section4Exercises();
-        }
+        //static void Main(string[] args)
+        //{
+        //    //Section1Exercises();
+        //    //Section2Exercises();
+        //    //Section2Challenge();
+        //    //Section3Exercises();
+        //    //Section3Challenge();
+        //    //Section4Exercises();
+        //    Section5Exercises();
+        //}
 
         #region Section 1
         public static void Section1Exercises()
@@ -511,5 +513,89 @@ namespace C_Masterclass_Proj
 
         }
         #endregion Section 4
+        #region Section 5
+        public static void Section5Exercises()
+        {
+            Console.WriteLine("Section 5 (Loops) Exercises");
+
+            Console.WriteLine();
+            Console.WriteLine("Portion: for loops");
+
+            for (int cnt = 0; cnt < 50; cnt+=5)
+            {
+                Console.WriteLine(cnt);
+            }
+
+            for (int cnt = 1; cnt < 100; cnt+=2)
+            {
+                Console.WriteLine(cnt);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Portion: do while loops");
+
+            int lengthOfText = 0;
+            do
+            {
+                Console.WriteLine("Please enter your name");
+                string name = Console.ReadLine();
+                int currentLength = name.Length;
+                lengthOfText += currentLength;
+            } while (lengthOfText <= 0);
+
+            Console.WriteLine();
+            Console.WriteLine("Portion: while loops");
+
+            int i = 0;
+            while (i < 10)
+            {
+                Console.WriteLine(i);
+                i++;
+            }
+
+            int studentCount = 0;
+            bool isCounting = true;
+            Console.WriteLine("You have begun counting.");
+
+            while (isCounting)
+            {
+                string userInput = Console.ReadLine();
+                if (userInput.Equals(""))
+                {
+                    studentCount++;
+                }
+                else
+                {
+                    isCounting = false;
+                    Console.WriteLine();
+                    Console.WriteLine("You have stopped counting.");
+                    Console.WriteLine("Student count is {0}.", studentCount);
+                }
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("Portion: break and continue");
+
+            for (int j=0; j<10; j++)
+            {
+                Console.WriteLine(j);
+                if (j == 3)
+                {
+                    Console.WriteLine("At 3 we stop.");
+                    break;
+                }
+            }
+
+            for (int k=0; k<10; k++)
+            {
+                if (k == 5)
+                {
+                    Console.WriteLine("We skip 5!");
+                    continue;
+                }
+                Console.WriteLine(k);
+            }
+        }
+        #endregion Section 5
     }
 }
