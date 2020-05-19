@@ -7,18 +7,19 @@ namespace C_Masterclass_Proj
 {
     class Program
     {
-        static void Main(string[] args)
-        {
-            //Section1Exercises();
-            //Section2Exercises();
-            //Section2Challenge();
-            //Section3Exercises();
-            //Section3Challenge();
-            //Section4Exercises();
-            //Section5Exercises();
-            Section6Exercises();
-            Console.WriteLine("test");
-        }
+        //static void Main(string[] args)
+        //{
+        //    //Section1Exercises();
+        //    //Section2Exercises();
+        //    //Section2Challenge();
+        //    //Section3Exercises();
+        //    //Section3Challenge();
+        //    //Section4Exercises();
+        //    //Section5Exercises();
+        //    //Section6Exercises();
+        //    //Console.WriteLine("test");
+        //    Section7Exercises();
+        //}
 
         #region Section 1
         public static void Section1Exercises()
@@ -618,9 +619,100 @@ namespace C_Masterclass_Proj
 
             Human notCyborg = new Human(500, "purple");
             notCyborg.IntroduceMyself();
-
-            
         }
         #endregion Section 6
+        #region Section 7
+
+        public static void Section7Exercises()
+        {
+            int[] nums = new int[10];
+
+            for (int i=0; i<10; i++)
+            {
+                nums[i] = i * i;
+            }
+
+            int cnt = 0;
+            foreach (int n in nums)
+            {
+                Console.WriteLine("Element #" + cnt++ + ": " + n);
+            }
+
+            // Create an array with 5 of your best friends
+            string[] friends = new string[5];
+            friends[0] = "Marcus";
+            friends[1] = "Cheyenne";
+            friends[2] = "Bayleigh";
+            friends[3] = "Shawnasea";
+            friends[4] = "Sierra";
+            // Shorter version below
+            // string[] friends = { "Marcus", "Cheyenne", "Bayleigh", "Shawnasea", "Sierra" };
+
+            // Create a foreach loop which greets all of your friends
+            foreach (string friend in friends)
+            {
+                Console.WriteLine("Hello " + friend + ", my friend!");
+            }
+
+            int[,] matrix = new int[,]
+            {
+                {7,8,9},
+                {4,5,6},
+                {1,2,3}
+            };
+
+            Console.WriteLine("Central value is {0}.", matrix[1, 1]);
+            
+            for (int i=0; i<3; i++)
+            {
+                string ret = "| ";
+                Console.WriteLine("+---+---+---+");
+                for (int j=0; j<3; j++)
+                {
+                    ret += matrix[i, j];
+                    ret += " | ";
+                }
+                Console.WriteLine(ret);
+            }
+            Console.WriteLine("+---+---+---+");
+
+            string[,,] threeD = new string[,,]
+            {
+                {
+                    {"000","001","002"},
+                    {"010","011","012"},
+                    {"020","021","022"}
+                },
+                {
+                    {"100","101","102"},
+                    {"110","111","112"},
+                    {"120","121","122"}
+                },
+                {
+                    {"200","201","202"},
+                    {"210","211","212"},
+                    {"220","221","222"}
+                }
+            };
+
+            Console.WriteLine("threeD[1,1,2]: {0}", threeD[1, 1, 2]);
+            Console.WriteLine("threeD[2,1,2]: {0}", threeD[2, 1, 2]);
+            Console.WriteLine("threeD[0,2,0]: {0}", threeD[0, 2, 0]);
+
+            int dimensions = threeD.Rank;
+            Console.WriteLine("Number of dimensions: {0}", dimensions);
+
+            int[,,] mtrx = new int[3, 5, 7];
+
+            int xCnt = mtrx.GetLength(0);
+            int yCnt = mtrx.GetLength(1);
+            int zCnt = mtrx.GetLength(2);
+
+            Console.WriteLine("Matrix width: " + xCnt);
+            Console.WriteLine("Matrix height: " + yCnt);
+            Console.WriteLine("Matrix length: " + zCnt);
+        }
+
+        #endregion Section 7
     }
 }
