@@ -7,16 +7,18 @@ namespace C_Masterclass_Proj
 {
     class Program
     {
-        //static void Main(string[] args)
-        //{
-        //    //Section1Exercises();
-        //    //Section2Exercises();
-        //    //Section2Challenge();
-        //    //Section3Exercises();
-        //    //Section3Challenge();
-        //    //Section4Exercises();
-        //    Section5Exercises();
-        //}
+        static void Main(string[] args)
+        {
+            //Section1Exercises();
+            //Section2Exercises();
+            //Section2Challenge();
+            //Section3Exercises();
+            //Section3Challenge();
+            //Section4Exercises();
+            //Section5Exercises();
+            Section6Exercises();
+            Console.WriteLine("test");
+        }
 
         #region Section 1
         public static void Section1Exercises()
@@ -597,5 +599,28 @@ namespace C_Masterclass_Proj
             }
         }
         #endregion Section 5
+        #region Section 6
+        public static void Section6Exercises()
+        {
+            Human sierra = new Human("Sierra", "Sallee", 22, "green");
+            sierra.IntroduceMyself();
+
+            Human dennis = new Human("Dennis");
+            dennis.IntroduceMyself();
+
+            Human sharon = new Human("Sharon", "Reed");
+            sharon.IntroduceMyself();
+
+            Human reece = new Human("Reece", "Sallee", 1);
+            reece.IntroduceMyself();
+            reece.HappyBirthday();
+            reece.IntroduceMyself();
+
+            Human notCyborg = new Human(500, "purple");
+            notCyborg.IntroduceMyself();
+
+            
+        }
+        #endregion Section 6
     }
 }
