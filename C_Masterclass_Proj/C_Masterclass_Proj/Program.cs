@@ -1,4 +1,7 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
+using System.ComponentModel;
 using System.Reflection.Metadata;
 using System.Text.Json;
 using System.Threading;
@@ -7,19 +10,20 @@ namespace C_Masterclass_Proj
 {
     class Program
     {
-        //static void Main(string[] args)
-        //{
-        //    //Section1Exercises();
-        //    //Section2Exercises();
-        //    //Section2Challenge();
-        //    //Section3Exercises();
-        //    //Section3Challenge();
-        //    //Section4Exercises();
-        //    //Section5Exercises();
-        //    //Section6Exercises();
-        //    //Console.WriteLine("test");
-        //    Section7Exercises();
-        //}
+        static void Main(string[] args)
+        {
+            //Section1Exercises();
+            //Section2Exercises();
+            //Section2Challenge();
+            //Section3Exercises();
+            //Section3Challenge();
+            //Section4Exercises();
+            //Section5Exercises();
+            //Section6Exercises();
+            //Console.WriteLine("test");
+            //Section7Exercises();
+            Section8Exercises();
+        }
 
         #region Section 1
         public static void Section1Exercises()
@@ -622,7 +626,6 @@ namespace C_Masterclass_Proj
         }
         #endregion Section 6
         #region Section 7
-
         public static void Section7Exercises()
         {
             int[] nums = new int[10];
@@ -711,8 +714,108 @@ namespace C_Masterclass_Proj
             Console.WriteLine("Matrix width: " + xCnt);
             Console.WriteLine("Matrix height: " + yCnt);
             Console.WriteLine("Matrix length: " + zCnt);
-        }
 
+            // Jagged array = array within array
+            int[][] jag = new int[3][];
+
+            jag[0] = new int[5];
+            jag[1] = new int[] { 1, 2, 3, 5, 8 };
+            jag[2] = new int[2];
+
+            int[][] jig = new int[][]
+            {
+                new int[] { 2,4,3,7,11},
+                new int[] { 1,2,3}
+            };
+
+            Console.WriteLine(jag[1][2]);
+            Console.WriteLine(jig[0][3]);
+
+            string[][] families = new string[][]
+            {
+                new string[] {"Mark", "Dawn", "Sierra", "Reece", "Marcos"},
+                new string[] {"Joe", "Sharon", "Zenda", "Jo Dawn", "Krystal"}
+            };
+
+            for (int i=0; i<families.Length; i++)
+            {
+                Console.WriteLine("Hello family #{0}!", i+1);
+                for (int j=0; j<families[i].Length; j++)
+                {
+                    Console.WriteLine("Welcome, {0}!", families[i][j]);
+                }
+            }
+
+            int[] ary = new int[] { 10, 5, 19, 23, 7 };
+            Console.WriteLine(GetAverage(ary));
+
+            ArrayList arrayList = new ArrayList();
+            arrayList.Add("Hello");
+            arrayList.Add(13.37);
+            arrayList.Add(200);
+
+            for (int i=0; i<arrayList.Count; i++)
+            {
+                Console.WriteLine(arrayList[i]);
+            }
+
+            foreach (Object obj in arrayList)
+            {
+                Console.WriteLine(obj);
+            }
+
+            List<int> list = new List<int> { 1, 2, 3, 4, 5 };
+            list.Add(0);
+            list.RemoveRange(2, 2);
+            list.Sort();
+            list.ForEach(i => Console.WriteLine(i));
+        }
+        public static double GetAverage(int[] values)
+        {
+            int size = values.Length;
+            double avg;
+            int sum = 0;
+
+            for (int i=0; i<size; i++)
+            {
+                sum += values[i];
+            }
+
+            avg = (double)sum / size;
+            return avg;
+        }
         #endregion Section 7
+        #region Section 8
+        public static void Section8Exercises()
+        {
+            // Challenge 1
+            VideoPost videoPost1 = new VideoPost("FailVideo", true, "Denis Panjuta",
+                "https://video.com/failvideo", 10);
+
+            Console.WriteLine(videoPost1.ToString());
+
+            Console.WriteLine("Press any key to begin the video!");
+            Console.ReadKey();
+            videoPost1.Play();
+            Console.WriteLine("Press any key to stop the video!");
+            Console.ReadKey();
+            videoPost1.Stop();
+
+            // Challenge 2
+
+            Employee Mike = new Employee("Hacker", "Michael", "Miller", 60000);
+            Mike.Introduce();
+            Mike.Work();
+            Mike.Pause();
+
+            Boss Harvey = new Boss("Manager", "Harvey", "Jones", 90000, "Buick");
+            Harvey.Introduce();
+            Harvey.Lead();
+            Harvey.AskAboutSalary();
+
+            Trainee John = new Trainee("Suck up", "John", "Doe", 5000, 20, 14);
+            John.Introduce();
+        }
+        #endregion Section 8
     }
 }

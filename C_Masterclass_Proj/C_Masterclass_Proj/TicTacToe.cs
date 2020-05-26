@@ -26,37 +26,37 @@ namespace C_Masterclass_Proj
         };
         private static bool isGameOver = false;
 
-        public static void Main(string[] args)
-        {
-            int currPlayer = 1;
-            while(!isGameOver)
-            {
-                PrintUpdate();
-                Console.WriteLine();
-                Console.WriteLine("Player #{0}: Please enter your field!", currPlayer);
-                string userInput = Console.ReadLine();
-                int tmp;
-                int val;
-                if (int.TryParse(userInput, out tmp))
-                {
-                    val = tmp;
-                    bool success = PlayerSelection(currPlayer, val);
-                    if (success)
-                    {
-                        currPlayer = currPlayer == 1 ? 2 : 1;
-                        HasAnyoneWon();
-                    }
-                    else
-                    {
-                        Console.WriteLine("Attempt unsuccessful. Please try again.");
-                    }
-                }
-                else
-                {
-                    Console.WriteLine("Invalid input. Please try again.");
-                }
-            }
-        }
+        //public static void Main(string[] args)
+        //{
+        //    int currPlayer = 1;
+        //    while(!isGameOver)
+        //    {
+        //        PrintUpdate();
+        //        Console.WriteLine();
+        //        Console.WriteLine("Player #{0}: Please enter your field!", currPlayer);
+        //        string userInput = Console.ReadLine();
+        //        int tmp;
+        //        int val;
+        //        if (int.TryParse(userInput, out tmp))
+        //        {
+        //            val = tmp;
+        //            bool success = PlayerSelection(currPlayer, val);
+        //            if (success)
+        //            {
+        //                currPlayer = currPlayer == 1 ? 2 : 1;
+        //                HasAnyoneWon();
+        //            }
+        //            else
+        //            {
+        //                Console.WriteLine("Attempt unsuccessful. Please try again.");
+        //            }
+        //        }
+        //        else
+        //        {
+        //            Console.WriteLine("Invalid input. Please try again.");
+        //        }
+        //    }
+        //}
 
         public static void PrintUpdate()
         {
