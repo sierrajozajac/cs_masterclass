@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.IO;
 using System.Reflection.Metadata;
 using System.Text.Json;
 using System.Threading;
@@ -22,7 +23,9 @@ namespace C_Masterclass_Proj
             //Section6Exercises();
             //Console.WriteLine("test");
             //Section7Exercises();
-            Section8Exercises();
+            //Section9Exercises();
+            //PolymorphismExercises();
+            TextFileExercises();
         }
 
         #region Section 1
@@ -785,8 +788,8 @@ namespace C_Masterclass_Proj
             return avg;
         }
         #endregion Section 7
-        #region Section 8
-        public static void Section8Exercises()
+        #region Section 9
+        public static void Section9Exercises()
         {
             // Challenge 1
             VideoPost videoPost1 = new VideoPost("FailVideo", true, "Denis Panjuta",
@@ -816,6 +819,117 @@ namespace C_Masterclass_Proj
             Trainee John = new Trainee("Suck up", "John", "Doe", 5000, 20, 14);
             John.Introduce();
         }
-        #endregion Section 8
+        #endregion Section 9
+        #region Section 10
+        public static void PolymorphismExercises()
+        {
+            Car c1 = new Car(200, "red");
+            BMW b1 = new BMW(340, "blue", "sedan");
+            Audi a1 = new Audi(230, "green", "car");
+
+            List<Car> carList = new List<Car>
+            {
+                c1, b1, a1
+            };
+
+            foreach (Car curCar in carList)
+            {
+                curCar.ShowDetails();
+            }
+            Console.WriteLine();
+
+            // This shows the difference between the use of 'new' versus 'override'
+
+            // Using 'new'
+            Console.WriteLine("Using the keyword 'new'");
+            b1.ShowDetails();
+            Car c2 = (Car)b1;
+            c2.ShowDetails();
+
+            Console.WriteLine();
+
+            M3 m3_1 = new M3(230, "purple");
+            m3_1.ShowDetails();
+            BMW b2 = (BMW)m3_1;
+            b2.ShowDetails();
+            Car c3 = (Car)b2;
+            c3.ShowDetails();
+            Car c4 = (Car)m3_1;
+            c4.ShowDetails();
+
+            // Using 'override'
+            Console.WriteLine();
+            Console.WriteLine();
+            Console.WriteLine("Using the keyword 'override'");
+            a1.ShowDetails();
+            Car c5 = (Car)a1;
+            c5.ShowDetails();
+
+            Console.WriteLine();
+
+            A6 a6_1 = new A6(420, "green");
+            a6_1.ShowDetails();
+            Audi a2 = (Audi)a6_1;
+            a2.ShowDetails();
+            Car c6 = (Car)a2;
+            c6.ShowDetails();
+            Car c7 = (Car)a6_1;
+            c7.ShowDetails();
+        }
+        public static void TextFileExercises()
+        {
+            // C:\Users\Owner\Documents\GitHub\cs_masterclass
+
+            // Writing method #1
+            string[] lines = { "First 250", "Second 242", "Third 240" };
+
+            File.WriteAllLines(@"C:\Users\Owner\Documents\GitHub\cs_masterclass\highscores.txt", lines);
+
+            /*
+            // Writing method #2
+            Console.WriteLine("Please give the file a name");
+            string fileName = Console.ReadLine();
+            Console.WriteLine("Please enter the text for the file");
+            string input = Console.ReadLine();
+            File.WriteAllText(@"F:\C# Masterclass Course\Projects\Assets\" + fileName + ".txt", input);
+            */
+
+            // Method 3
+            using (StreamWriter file = new StreamWriter(@"C:\Users\Owner\Documents\GitHub\cs_masterclass\myText2.txt"))
+            {
+                foreach (string line in lines)
+                {
+                    if (line.Contains("2"))
+                    {
+                        file.WriteLine(line);
+                    }
+                }
+            }
+
+            using (StreamWriter file = new StreamWriter(@"C:\Users\Owner\Documents\GitHub\cs_masterclass\myText2.txt", true))
+            {
+                file.WriteLine("Additional line");
+            }
+
+            //Reading Tect from a File
+            //exchange the adress of the file with the one you want to use
+            string text = System.IO.File.ReadAllText(@"C:\Users\Owner\Documents\GitHub\cs_masterclass\myText2.txt");
+
+            Console.WriteLine("Textfile contains the following text: {0}", text);
+
+            //Receive the Text line by line.
+            string[] linesIn = System.IO.File.ReadAllLines(@"C:\Users\Owner\Documents\GitHub\cs_masterclass\myText2.txt");
+
+            Console.WriteLine("Content of the file line by line:");
+            foreach (string line in linesIn)
+            {
+                //\t is a tab
+                Console.WriteLine( "\t" + line);
+            }
+
+            //To keep the Console open.
+            Console.Read();
+        }
+        #endregion Section 10
     }
 }
