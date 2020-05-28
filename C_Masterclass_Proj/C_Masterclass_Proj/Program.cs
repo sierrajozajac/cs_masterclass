@@ -3,12 +3,43 @@ using System.Collections;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.IO;
+using System.Net.Http.Headers;
 using System.Reflection.Metadata;
 using System.Text.Json;
 using System.Threading;
+using System.Transactions;
 
 namespace C_Masterclass_Proj
 {
+    struct Game
+    {
+        public string name;
+        public string developer;
+        public double rating;
+        public string releaseDate;
+
+        public Game(string name, string developer, double rating, string releaseDate)
+        {
+            this.name = name;
+            this.developer = developer;
+            this.rating = rating;
+            this.releaseDate = releaseDate;
+        }
+
+        public void Display()
+        {
+            Console.WriteLine("Instance of game struct.");
+            Console.WriteLine("Game name: " + name);
+            Console.WriteLine("Game was developed by: " + developer);
+            Console.WriteLine("Game rating: " + rating);
+            Console.WriteLine("Game was released: " + releaseDate);
+            Console.WriteLine();
+        }
+    }
+
+    enum Day { Mon=2, Tues, Wed, Thurs, Fri, Sat, Sun=1 };
+    enum Month { Jan=1, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec };
+
     class Program
     {
         static void Main(string[] args)
@@ -25,7 +56,8 @@ namespace C_Masterclass_Proj
             //Section7Exercises();
             //Section9Exercises();
             //PolymorphismExercises();
-            TextFileExercises();
+            //TextFileExercises();
+            Section11Exercises();
         }
 
         #region Section 1
@@ -894,7 +926,7 @@ namespace C_Masterclass_Proj
             File.WriteAllText(@"F:\C# Masterclass Course\Projects\Assets\" + fileName + ".txt", input);
             */
 
-            // Method 3
+            // Writing method #3
             using (StreamWriter file = new StreamWriter(@"C:\Users\Owner\Documents\GitHub\cs_masterclass\myText2.txt"))
             {
                 foreach (string line in lines)
@@ -911,7 +943,7 @@ namespace C_Masterclass_Proj
                 file.WriteLine("Additional line");
             }
 
-            //Reading Tect from a File
+            //Reading Text from a File
             //exchange the adress of the file with the one you want to use
             string text = System.IO.File.ReadAllText(@"C:\Users\Owner\Documents\GitHub\cs_masterclass\myText2.txt");
 
@@ -931,5 +963,216 @@ namespace C_Masterclass_Proj
             Console.Read();
         }
         #endregion Section 10
+        #region Section 11
+        public static void Section11Exercises()
+        {
+            // Structs
+            Game game1;
+            game1.name = "Pokemon Go";
+            game1.developer = "Niantic";
+            game1.rating = 3.5;
+            game1.releaseDate = "01/07/2016";
+
+            Console.WriteLine("Instance of game struct.");
+            Console.WriteLine("Game name: " + game1.name);
+            Console.WriteLine();
+
+            Game game2 = new Game("Witcher", "Who Knows", 4.1, "01/01/2000");
+            game2.Display();
+
+            // Enums
+            Day fr = Day.Fri;
+            Day sa = Day.Sat;
+
+            Console.WriteLine(fr - sa);
+            Console.WriteLine(fr - fr);
+            Console.WriteLine();
+
+            Day curr = Day.Sun;
+            for(int i=0; i<7; i++)
+            {
+                Console.WriteLine(curr);
+                Console.WriteLine((int)curr);
+                curr++;
+            }
+            Console.WriteLine();
+
+            Console.WriteLine(Month.Feb);
+            Console.WriteLine((int)Month.Feb);
+            Console.WriteLine();
+
+            // Math class
+            double ceil = Math.Ceiling(3.5);
+            double flor = Math.Floor(3.5);
+
+            Console.WriteLine();
+            Console.WriteLine("Ceiling of 3.5 is {0}", ceil);
+            Console.WriteLine("Floor of 3.5 is {0}", flor);
+
+            int num1 = 13;
+            int num2 = 9;
+
+            Console.WriteLine();
+            Console.WriteLine("The lowest number between {0} and {1} is {2}.", num1, num2, Math.Min(num1,num2));
+            Console.WriteLine("The highest number between {0} and {1} is {2}.", num1, num2, Math.Max(num1, num2));
+
+            Console.WriteLine();
+            Console.WriteLine("3 to the power of 5 is {0}.", Math.Pow(3, 5));
+            Console.WriteLine("The square root of 81 is {0}.", Math.Sqrt(81));
+
+            Console.WriteLine();
+            Console.WriteLine("Pi is equal to {0}.", Math.PI);
+            Console.WriteLine();
+
+            // Random class
+            Random dice = new Random();
+            int numEyes;
+
+            for(int i=0; i<10; i++)
+            {
+                numEyes = dice.Next(1, 7);
+                Console.WriteLine("I rolled a {0}!", numEyes);
+            }
+            Console.WriteLine();
+
+            Random fortuneTeller = new Random();
+            string outlook;
+            string userInput;
+
+            Console.WriteLine("Welcome! Would you like me to tell you your fortune? (y/n)");
+            userInput = Console.ReadLine();
+            while (userInput.Equals("y"))
+            {
+                Console.WriteLine("Find a question from deep inside you and let it free.");
+                Console.WriteLine("Then the ball will tell what is meant to be!");
+                Console.ReadLine();
+                switch (fortuneTeller.Next(1,4))
+                {
+                    case 1:
+                        outlook = "good!";
+                        break;
+                    case 2:
+                        outlook = "not so bad...";
+                        break;
+                    case 3:
+                        outlook = "gloomy. Beware!";
+                        break;
+                    default:
+                        outlook = "unclear at this time.";
+                        break;
+                }
+                Console.WriteLine("The outlook is {0}", outlook);
+                Console.WriteLine();
+                Console.WriteLine("Would you like me to tell your fortune again?");
+                userInput = Console.ReadLine();
+            }
+            Console.WriteLine("Thank you for your time, traveler!");
+            Console.WriteLine();
+
+            // Regular expressions
+
+            /*
+             * CHARACTER ESCAPES
+             * \t 		- Matches a tab
+             * \n 		- Matches a new line
+             * 
+             * CHARACTER CLASSES
+             * .       - Wildcard: Matches any single character except \n.
+             * \d      - Matches any decimal digit. (0-9)
+             * \D      - Matches any character other than a decimal digit. (0-9)
+             * \w      - Word Character (a-z, A-Z, 0-9, _)
+             * \W      - Not a Word Character
+             * \s      - Matches any white-space character. (space, tab, newline)
+             * \S      - Matches any non-white-space character (space, tab, newline)
+             * [character_group]     - Matches any single character in character_group. By default, the match is case-sensitive.
+             * [^character_group]    - Negation: Matches any single character that is not in character_group. By default, characters in character_group are case-sensitive.
+             * 
+             * ANCHORS
+             * ^       - The match must start at the beginning of the string or line.
+             * $       - The match must occur at the end of the string or before \n at the end of the line or string.
+             * \A	    - The match must occur at the start of the string.
+             * \Z 		- The match must occur at the end of the string or before \n at the end of the string.
+             * \b      - Word Boundary
+             * \B      - Not a Word Boundary
+             * 
+             * ALTERNATION CONSTRUCTS
+             * |       - Either Or
+             * 
+             * GROUPING CONSTRUCT
+             * ( )     - Group
+             * 
+             * Quantifiers:
+             * *       - Matches the previous element zero or more times.
+             * +       - Matches the previous element one or more times.
+             * ?       - Matches the previous element zero or one time.
+             * {n}     - Matches the previous element exactly n times.
+             * {n,m}   - Matches the previous element at least n times, but no more than m times.
+             */
+
+            // Phone number regex
+            // (
+            //   ([+]\d)|()
+            // ) 
+            // (
+            //   (\d{3})|([(]\d{3}[)])
+            // )
+            // ([#]|[ ]|[-])
+            // \d{3}
+            // ([#]|[ ]|[-])
+            // \d{4}
+
+            // All together
+            // (([+]\d)|())((\d{3})|([(]\d{3}[)]))([#]|[ ]|[-])\d{3}([#]|[ ]|[-])\d{4}
+
+            // Datetime
+            Console.WriteLine("Today is {0}, {1}/{2}.", DateTime.Today.DayOfWeek, DateTime.Today.Month, DateTime.Today.Day);
+            string fmt = "00";
+            Console.WriteLine("Time is currently {0}:{1}.", DateTime.Now.TimeOfDay.Hours.ToString(fmt), DateTime.Now.TimeOfDay.Minutes.ToString(fmt));
+            Console.WriteLine();
+
+            DateTime tomorrow = DateTime.Today.AddDays(1);
+            Console.WriteLine("Tomorrow is {0}, {1}/{2}.", tomorrow.DayOfWeek, tomorrow.Month, tomorrow.Day);
+            tomorrow = tomorrow.AddDays(1);
+            Console.WriteLine("The day after tomorrow is {0}, {1}/{2}.", tomorrow.DayOfWeek, tomorrow.Month, tomorrow.Day);
+            tomorrow = tomorrow.AddDays(1);
+            Console.WriteLine("The day after that is {0}, {1}/{2}.", tomorrow.DayOfWeek, tomorrow.Month, tomorrow.Day);
+            Console.WriteLine();
+
+            DateTime dt = new DateTime(1997,10,17);
+            TimeSpan age = DateTime.Now.Subtract(dt);
+
+            Console.WriteLine("I have been alive for approximately {0} seconds.", age.TotalSeconds);
+            Console.WriteLine("I have been alive for approximately {0} minutes.", age.TotalMinutes);
+            Console.WriteLine("I have been alive for approximately {0} hours.", age.TotalMinutes / 60);
+            Console.WriteLine("I have been alive for approximately {0} days.", age.TotalDays);
+            Console.WriteLine("I have been alive for approximately {0} months.", age.TotalDays / 30);
+            Console.WriteLine("I have been alive for approximately {0} years.", age.TotalDays / 365);
+            Console.WriteLine();
+
+            // Nullables
+            int? n1 = null;
+            int? n2 = 20;
+
+            double? d3 = new Double?();
+            double? d4 = 34.123;
+            d3 = d4 / n2;
+
+            bool? boolval = null;
+            bool? bool2 = new bool?();
+
+            Console.WriteLine("n1: {0}", n1);
+            Console.WriteLine("n2: {0}", n2);
+            Console.WriteLine("d3: {0}", d3);
+            Console.WriteLine("d4: {0}", d4);
+            Console.WriteLine("boolval: {0}", boolval.ToString());
+            Console.WriteLine("bool2: {0}", bool2.ToString());
+            Console.WriteLine();
+
+            boolval = true;
+            Console.WriteLine("boolval (again): {0}", boolval.ToString());
+            Console.WriteLine("num1 (again) :{0}", n1 ?? 0);
+            Console.WriteLine();
+        }
+        #endregion Section 11
     }
 }
