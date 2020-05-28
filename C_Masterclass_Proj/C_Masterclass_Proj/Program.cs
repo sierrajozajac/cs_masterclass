@@ -36,7 +36,6 @@ namespace C_Masterclass_Proj
             Console.WriteLine();
         }
     }
-
     enum Day { Mon=2, Tues, Wed, Thurs, Fri, Sat, Sun=1 };
     enum Month { Jan=1, Feb, Mar, Apr, May, Jun, Jul, Aug, Sep, Oct, Nov, Dec };
 
@@ -51,13 +50,18 @@ namespace C_Masterclass_Proj
             //Section3Challenge();
             //Section4Exercises();
             //Section5Exercises();
-            //Section6Exercises();
-            //Console.WriteLine("test");
-            //Section7Exercises();
+            //OOP_Exercises();
+            //ArrayListExercises();
             //Section9Exercises();
             //PolymorphismExercises();
             //TextFileExercises();
-            Section11Exercises();
+            //Section11Exercises();
+            //DelegateExercises();
+            //EventExercises();
+            WPF_Exercises();
+            DatabaseExercises();
+            LinqExercises();
+            ThreadingExercises();
         }
 
         #region Section 1
@@ -640,7 +644,7 @@ namespace C_Masterclass_Proj
         }
         #endregion Section 5
         #region Section 6
-        public static void Section6Exercises()
+        public static void OOP_Exercises()
         {
             Human sierra = new Human("Sierra", "Sallee", 22, "green");
             sierra.IntroduceMyself();
@@ -661,7 +665,7 @@ namespace C_Masterclass_Proj
         }
         #endregion Section 6
         #region Section 7
-        public static void Section7Exercises()
+        public static void ArrayListExercises()
         {
             int[] nums = new int[10];
 
@@ -915,7 +919,7 @@ namespace C_Masterclass_Proj
             // Writing method #1
             string[] lines = { "First 250", "Second 242", "Third 240" };
 
-            File.WriteAllLines(@"C:\Users\Owner\Documents\GitHub\cs_masterclass\highscores.txt", lines);
+            System.IO.File.WriteAllLines(@"C:\Users\Owner\Documents\GitHub\cs_masterclass\highscores.txt", lines);
 
             /*
             // Writing method #2
@@ -1174,5 +1178,111 @@ namespace C_Masterclass_Proj
             Console.WriteLine();
         }
         #endregion Section 11
+        #region Section 12
+        public delegate double PerformCalculation(double x, double y);
+        public delegate string GetTextDelegate(string name);
+        public static double Addition(double a, double b)
+        {
+            return a + b;
+        }
+        public static double Division(double a, double b)
+        {
+            return a / b;
+        }
+        public static double Subtraction(double a, double b)
+        {
+            return a - b;
+        }
+        public static void DelegateExercises()
+        {
+            // Delegates
+
+            // Covariance enables to pass a derived type where a base type is expected
+            // e.g. FileStream where Stream is expected
+
+            // Contravariance enables to pass a bass type where a derived type is expected
+            // e.g. Stream where FileStream is expected
+
+            PerformCalculation getSum = Addition;
+            Console.WriteLine("The sum of 123 and 9 is {0}.", getSum(123, 9));
+            PerformCalculation getDifference = Subtraction;
+            Console.WriteLine("The difference of 123 and 9 is {0}.", getDifference(123, 9));
+            PerformCalculation getQuotient = Division;
+            Console.WriteLine("The quotient of 123 divided by 9 is {0}.", getQuotient(123, 9));
+            PerformCalculation getMulti = getSum + getQuotient;
+            Console.WriteLine("The sum + quotient of 123 and 9 is {0}. [{1}]", getMulti(123, 9), getSum(123,9) + getQuotient(123,9));
+            getMulti += Subtraction;
+            getMulti -= getQuotient;
+            Console.WriteLine("The sum + difference of 123 and 9 is now {0}. [{1}]", getMulti(123, 9), getSum(123, 9) + getDifference(123, 9));
+            Console.WriteLine();
+
+            // A different option for implementation
+            // Anonymous methods
+            GetTextDelegate getText = delegate (string name)
+            {
+                return "Hello, " + name;
+            };
+            Console.WriteLine(getText("Sierra"));
+            Console.WriteLine();
+
+            // Another option (best option!)
+            // Lambda expressions
+
+            // Expression lambda
+            // Good for one line
+            GetTextDelegate getHello = (string name) => { return "Hello, " + name; };
+            Console.WriteLine(getHello("world!"));
+
+            // Statement lambda
+            // Necessary if more than one line
+            GetTextDelegate getWassup = (string name) => {
+                Console.WriteLine("WASSUP!!!");
+                Console.WriteLine("How you been, {0}?", name);
+                return "Wassup, " + name;
+            };
+            Console.WriteLine(getWassup("Sierra"));
+
+            GetTextDelegate getWelcome = name => "Welcome, " + name;
+            Console.WriteLine(getWelcome("Sierra"));
+
+            Console.WriteLine();
+        }
+        public static void EventExercises()
+        {
+            var file = new File() { Title = "File 1" };
+            var downloadHelper = new DownloadHelper(); // publisher
+            var unpackService = new UnpackService(); // receiver
+            var notifService = new NotificationService(); // notifier
+            downloadHelper.FileDownloaded += unpackService.OnFileDownloaded;
+            downloadHelper.FileDownloaded += notifService.OnFileDownloaded;
+
+            downloadHelper.Download(file);
+            Console.WriteLine("Lah di dah");
+        }
+        #endregion Section 12
+        #region Section 13
+        public static void WPF_Exercises()
+        {
+
+        }
+        #endregion Section 13
+        #region Section 14
+        public static void DatabaseExercises()
+        {
+
+        }
+        #endregion Section 14
+        #region Section 15
+        public static void LinqExercises()
+        {
+
+        }
+        #endregion Section 15
+        #region Section 16
+        public static void ThreadingExercises()
+        {
+
+        }
+        #endregion Section 16
     }
 }
